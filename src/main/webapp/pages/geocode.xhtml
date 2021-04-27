@@ -1,0 +1,111 @@
+<ui:composition xmlns:ui="http://xmlns.jcp.org/jsf/facelets" xmlns:p="http://primefaces.org/ui"
+                xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core">
+
+    <h:form id="form-geocode" styleClass="p-grid">
+        <p:growl id="growl" showDetail="true" severity="error, info">
+            <p:autoUpdate/>
+        </p:growl>
+        <p:card styleClass="p-col">
+            <f:facet name="title">Básico</f:facet>
+            <h:panelGroup styleClass="ui-fluid p-grid">
+                <h:panelGroup styleClass="p-col-12" layout="block">
+                    <h:panelGroup styleClass="ui-float-label">
+                        <h:panelGroup styleClass="ui-inputgroup">
+                            <p:inputText id="address"/>
+                            <p:commandButton value="Buscar" iconPos="right" icon="pi pi-search"
+                                             onclick="geocode('form-geocode', 'geocode-map')"/>
+                        </h:panelGroup>
+                        <p:outputLabel for="@previous" value="Dirección:"/>
+                    </h:panelGroup>
+                </h:panelGroup>
+                <h:panelGroup styleClass="p-col-12" layout="block">
+                    <p:gmap id="gecode-gmap" styleClass="map-basic" type="TERRAIN" zoom="4" widgetVar="geocode-map"
+                            center="#{geocodeC.mapCenter}" model="#{geocodeC.defaultModel}">
+                        <p:ajax event="geocode" listener="#{geocodeC.onGeocode}"
+                                oncomplete="PF('dlg-newMarker').show()"/>
+                    </p:gmap>
+                </h:panelGroup>
+            </h:panelGroup>
+        </p:card>
+        <p:dialog header="Crear Marker" widgetVar="dlg-newMarker">
+            <p>¿Estas seguro que quieres crear un Marker?</p>
+            <f:facet name="footer">
+                <p:commandButton styleClass="ui-button-flat" type="button" value="No"
+                                 onclick="PF('dlg-newMarker').hide()"/>
+                <p:commandButton type="button" value="Yes">
+                    <p:ajax event="click" listener="#{geocodeC.createMarker}" update="gecode-gmap"
+                            oncomplete="PF('dlg-newMarker').hide()"/>
+                </p:commandButton>
+            </f:facet>
+        </p:dialog>
+
+        <p:card styleClass="p-col">
+            <f:facet name="title">Básico</f:facet>
+            <h:panelGroup styleClass="ui-fluid p-grid">
+                <h:panelGroup styleClass="p-col-12" layout="block">
+                    <p:selectOneMenu id="department" widgetVar="geocode-department2"
+                                     value="#{geocodeC.selectedDepartment}">
+                        <p:ajax event="change" update="province" listener="#{geocodeC.provinces.clear}"/>
+                        <f:selectItem itemLabel="Seleccione un departamento" noSelectionOption="true"/>
+                        <f:selectItems value="#{geocodeC.departments}" var="department" itemValue="#{department}"/>
+                    </p:selectOneMenu>
+                    <p:selectOneMenu id="province" widgetVar="geocode-province2" value="#{geocodeC.selectedProvince}">
+                        <p:ajax event="change" update="district" listener="#{geocodeC.districts.clear}"/>
+                        <f:selectItem itemLabel="Seleccione un provincia" noSelectionOption="true"/>
+                        <f:selectItems value="#{geocodeC.provinces}"/>
+                    </p:selectOneMenu>
+                    <p:selectOneMenu id="district" widgetVar="geocode-district2">
+                        <f:selectItem itemLabel="Seleccione un distrito" noSelectionOption="true"/>
+                        <f:selectItems value="#{geocodeC.districts}"/>
+                    </p:selectOneMenu>
+                    <h:panelGroup styleClass="ui-inputgroup">
+                        <p:inputText id="address2" placeholder="Dirección"/>
+                        <p:commandButton value="Buscar" iconPos="right" icon="pi pi-search"
+                                         onclick="geocode2('form-geocode', 'geocode-map2')"/>
+                    </h:panelGroup>
+                </h:panelGroup>
+                <h:panelGroup styleClass="p-col-12" layout="block">
+                    <p:gmap id="gecode-gmap2" styleClass="map-basic" type="TERRAIN" zoom="4" widgetVar="geocode-map2"
+                            center="#{geocodeC.mapCenter}" model="#{geocodeC.defaultModel}">
+                        <p:ajax event="overlaySelect" listener="#{geocodeC.onOverlaySelect}"/>
+                        <p:ajax event="geocode" listener="#{geocodeC.onGeocode}"
+                                oncomplete="PF('dlg-newMarker2').show()"/>
+                        <p:gmapInfoWindow>
+                            <h:panelGroup>
+                                <p:outputLabel value="#{geocodeC.marker.title}"
+                                               styleClass="ui-card-title p-align-center"/>
+                                <p:divider/>
+                                <p:button type="button" icon="pi pi-trash" value="Eliminar"
+                                          onclick="PF('dlg-deleteMarker2').show()"
+                                          styleClass="ui-button-danger ui-button-flat"/>
+
+                            </h:panelGroup>
+                        </p:gmapInfoWindow>
+                    </p:gmap>
+                </h:panelGroup>
+            </h:panelGroup>
+        </p:card>
+        <p:dialog header="Crear Marker" widgetVar="dlg-newMarker2" modal="true">
+            <p>¿Estas seguro que quieres crear un Marker?</p>
+            <f:facet name="footer">
+                <p:commandButton styleClass="ui-button-flat" type="button" value="No"
+                                 onclick="PF('dlg-newMarker2').hide()"/>
+                <p:commandButton type="button" value="Yes">
+                    <p:ajax event="click" listener="#{geocodeC.createMarker}" update="gecode-gmap2"
+                            oncomplete="PF('dlg-newMarker2').hide()"/>
+                </p:commandButton>
+            </f:facet>
+        </p:dialog>
+        <p:dialog header="Eliminar Marker" widgetVar="dlg-deleteMarker2" modal="true">
+            <p>¿Estas seguro que quieres eliminar el Marker?</p>
+            <f:facet name="footer">
+                <p:commandButton styleClass="ui-button-flat" type="button" value="Yes">
+                    <p:ajax event="click" listener="#{geocodeC.deleteMarker}" update="gecode-gmap2"
+                            oncomplete="PF('dlg-deleteMarker2').hide()"/>
+                </p:commandButton>
+                <p:commandButton type="button" value="No" onclick="PF('dlg-deleteMarker2').hide()"
+                                 update="gecode-gmap2"/>
+            </f:facet>
+        </p:dialog>
+    </h:form>
+</ui:composition>

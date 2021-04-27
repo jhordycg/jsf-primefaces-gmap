@@ -1,0 +1,19 @@
+body {
+    margin: 0;
+}
+
+.map-basic {
+    height: 350px;
+}
+
+.map {
+     width: 100%;
+     height: 500px;
+ }
+
+.map-home {
+    width: 500px;
+    height: 500px;
+    margin: 0;
+    padding: 0;
+}

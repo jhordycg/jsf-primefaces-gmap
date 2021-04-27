@@ -1,0 +1,85 @@
+plugins {
+    id 'java'
+    id 'war'
+}
+
+group 'dev.jhordycg.java.jsf.demo'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenLocal()
+    mavenCentral()
+}
+
+ext {
+    junitVersion = '5.7.0'
+}
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+dependencies {
+    implementation 'org.jetbrains:annotations:20.1.0'
+    compileOnly('javax.mvc:javax.mvc-api:1.0.0')
+    compileOnly('javax.faces:javax.faces-api:2.3')
+
+    // https://mvnrepository.com/artifact/javax.enterprise/cdi-api
+    compileOnly group: 'javax.enterprise', name: 'cdi-api', version: '2.0'
+    // https://mvnrepository.com/artifact/org.primefaces/primefaces
+    implementation group: 'org.primefaces', name: 'primefaces', version: '10.0.0'
+    // https://mvnrepository.com/artifact/mysql/mysql-connector-java
+    implementation group: 'mysql', name: 'mysql-connector-java', version: '8.0.24'
+    // https://mvnrepository.com/artifact/javax.annotation/javax.annotation-api
+    implementation group: 'javax.annotation', name: 'javax.annotation-api', version: '1.3.2'
+
+    testImplementation("org.junit.jupiter:junit-jupiter-api:${junitVersion}")
+    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:${junitVersion}")
+}
+
+test {
+    useJUnitPlatform()
+}
+
+task startPayara(type:Exec) {
+    group('payara')
+    description('Start the Payara domain.')
+    ignoreExitValue(true)
+
+    workingDir '/home/jhordycg/Payara_Server/bin'
+    commandLine './asadmin', 'start-domain', 'domain1'
+}
+
+task stopPayara(type:Exec) {
+    group('payara')
+    description('Stop the Payara domain.')
+    workingDir '/home/jhordycg/Payara_Server/bin'
+    commandLine './asadmin', 'stop-domain', 'domain1'
+}
+
+task restartPayara(type:Exec) {
+    workingDir '/home/jhordycg/Payara_Server/bin'
+    commandLine './asadmin', 'restart-domain', 'domain1'
+}
+
+task deployWar(type:Exec) {
+    group("payara")
+    description('Deploy a war in Payara server')
+    dependsOn(war)
+
+    workingDir '/home/jhordycg/Payara_Server/bin'
+    commandLine './asadmin', 'deploy', '--name', project.name, war.archiveFile.get()
+}
+
+task redeployWar(type:Exec) {
+    group("payara")
+    description('Deploy a war in Payara server')
+    dependsOn(build)
+
+    workingDir '/home/jhordycg/Payara_Server/bin'
+    commandLine  './asadmin', 'redeploy', '--name', project.name, war.archiveFile.get()
+}
+
+task undeployWar(type:Exec) {
+    workingDir '/home/jhordycg/Payara_Server/bin'
+    commandLine './asadmin', 'undeploy', project.name
+}

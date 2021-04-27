@@ -1,0 +1,121 @@
+<ui:composition xmlns:ui="http://xmlns.jcp.org/jsf/facelets" xmlns:p="http://primefaces.org/ui"
+                xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core">
+    <h:panelGroup styleClass="p-grid" layout="block">
+        <p:card id="default" styleClass="p-col-4">
+            <f:facet name="title">Default</f:facet>
+            <p:gmap styleClass="map-basic" type="hybrid" center="-9.189967,-75.015152" zoom="4"/>
+            <f:facet name="footer">
+                <h:panelGroup styleClass="p-grid" layout="block">
+                    <p:button value="Mostrar detalle" styleClass="ui-button-raised ui-button-flat p-col"
+                              icon="pi pi-book"
+                              onclick="PF('dlg-default').show()"/>
+                </h:panelGroup>
+            </f:facet>
+        </p:card>
+
+        <p:card id="scrollWheel" styleClass="p-col-4">
+            <f:facet name="title">Scroll Wheel</f:facet>
+            <p:gmap styleClass="map-basic" type="hybrid" center="-9.189967,-75.015152" zoom="4"
+                    scrollWheel="false"/>
+            <f:facet name="footer">
+                <h:panelGroup styleClass="p-grid" layout="block">
+                    <p:button value="Mostrar detalle" styleClass="ui-button-raised ui-button-flat p-col"
+                              icon="pi pi-book"
+                              onclick="PF('dlg-scrollWheel').show()"/>
+                </h:panelGroup>
+            </f:facet>
+        </p:card>
+
+        <p:card id="dragable" styleClass="p-col-4">
+            <f:facet name="title">Draggable</f:facet>
+            <p:gmap styleClass="map-basic" type="hybrid" center="-9.189967,-75.015152" zoom="4"
+                    draggable="false"/>
+            <f:facet name="footer">
+                <h:panelGroup styleClass="p-grid" layout="block">
+                    <p:button value="Mostrar detalle" styleClass="ui-button-raised ui-button-flat p-col"
+                              icon="pi pi-book"
+                              onclick="PF('dlg-dragable').show()"/>
+                </h:panelGroup>
+            </f:facet>
+        </p:card>
+
+        <p:card id="disableDoubleClickZoom" styleClass="p-col-4">
+            <f:facet name="title">Disable Double ClickZoom</f:facet>
+            <p:gmap styleClass="map-basic" type="hybrid" center="-9.189967,-75.015152" zoom="4"
+                    disableDoubleClickZoom="true"/>
+            <f:facet name="footer">
+                <h:panelGroup styleClass="p-grid" layout="block">
+                    <p:button value="Mostrar detalle" styleClass="ui-button-raised ui-button-flat p-col"
+                              icon="pi pi-book"
+                              onclick="PF('dlg-disableDoubleClickZoom').show()"/>
+                </h:panelGroup>
+            </f:facet>
+        </p:card>
+
+        <p:card id="mapTypeControl" styleClass="p-col-4">
+            <f:facet name="title">Map Type Control</f:facet>
+            <p:gmap styleClass="map-basic" type="hybrid" center="-9.189967,-75.015152" zoom="4"
+                    mapTypeControl="false"/>
+            <f:facet name="footer">
+                <h:panelGroup styleClass="p-grid" layout="block">
+                    <p:button value="Mostrar detalle" styleClass="ui-button-raised ui-button-flat p-col"
+                              icon="pi pi-book"
+                              onclick="PF('dlg-mapTypeControl').show()"/>
+                </h:panelGroup>
+            </f:facet>
+        </p:card>
+
+        <p:card id="disableDefaultUI" styleClass="p-col-4">
+            <f:facet name="title">Disable Default UI</f:facet>
+            <p:gmap styleClass="map-basic" type="hybrid" center="-9.189967,-75.015152" zoom="4"
+                    disableDefaultUI="true"/>
+            <f:facet name="footer">
+                <h:panelGroup styleClass="p-grid" layout="block">
+                    <p:button value="Mostrar detalle" styleClass="ui-button-raised ui-button-flat p-col"
+                              icon="pi pi-book"
+                              onclick="PF('dlg-disableDefaultUI').show()"/>
+                </h:panelGroup>
+            </f:facet>
+        </p:card>
+
+        <p:card id="streetView" styleClass="p-col-4">
+            <f:facet name="title">Street View</f:facet>
+            <p:gmap styleClass="map-basic" type="hybrid" center="-9.189967,-75.015152" zoom="4"
+                    disableDefaultUI="true" streetView="true"/>
+            <f:facet name="footer">
+                <h:panelGroup styleClass="p-grid" layout="block">
+                    <p:button value="Mostrar detalle" styleClass="ui-button-raised ui-button-flat p-col"
+                              icon="pi pi-book"
+                              onclick="PF('dlg-streetView').show()"/>
+                </h:panelGroup>
+            </f:facet>
+        </p:card>
+
+        <p:card id="navigationControl" styleClass="p-col-4">
+            <f:facet name="title">Navigation Control x</f:facet>
+            <p:gmap styleClass="map-basic" type="hybrid" center="-9.189967,-75.015152" zoom="4"
+                    navigationControl="false"/>
+            <f:facet name="footer">
+                <h:panelGroup styleClass="p-grid" layout="block">
+                    <p:button value="Mostrar detalle" styleClass="ui-button-raised ui-button-flat p-col"
+                              icon="pi pi-book"
+                              onclick="PF('dlg-navigationControl').show()"/>
+                </h:panelGroup>
+            </f:facet>
+        </p:card>
+
+        <p:card id="fitBounds" styleClass="p-col-4">
+            <f:facet name="title">Fit Bounds</f:facet>
+            <p:gmap styleClass="map-basic" type="hybrid" center="-9.189967,-75.015152" zoom="4"
+                    model="#{attributesC.defaultModel}" fitBounds="true"/>
+            <f:facet name="footer">
+                <h:panelGroup styleClass="p-grid" layout="block">
+                    <p:button value="Mostrar detalle" styleClass="ui-button-raised ui-button-flat p-col"
+                              icon="pi pi-book"
+                              onclick="PF('dlg-fitBounds').show()"/>
+                </h:panelGroup>
+            </f:facet>
+        </p:card>
+    </h:panelGroup>
+    <ui:include src="docs/attributes.xhtml"/>
+</ui:composition>

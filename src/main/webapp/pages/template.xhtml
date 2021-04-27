@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      lang="es" xml:lang="es">
+<h:head>
+    <title>Google Maps - Demo</title>
+    <script type="text/javascript" defer="defer" xml:space="preserve"
+            src="https://maps.google.com/maps/api/js?key=AIzaSyCcYfOgkVV93HEa6_bk-QdSs9jgoyYBPkA"></script>
+    <h:outputStylesheet library="styles" name="gmap.css"/>
+    <h:outputStylesheet library="styles" name="primeflex.min.css"/>
+    <h:outputScript library="scripts" name="gmap.js"/>
+</h:head>
+<h:body>
+    <p:tabView id="gmap" activeIndex="2">
+        <p:tab title="Atributos" id="attributes">
+            <ui:include src="attributes.xhtml"/>
+        </p:tab>
+        <p:tab title="Ajax" id="ajax">
+            <ui:include src="ajax.xhtml"/>
+        </p:tab>
+        <p:tab title="Geocode" id="geocode">
+            <ui:include src="geocode.xhtml"/>
+        </p:tab>
+    </p:tabView>
+</h:body>
+</html>

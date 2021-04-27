@@ -1,0 +1,42 @@
+<ui:composition xmlns:ui="http://xmlns.jcp.org/jsf/facelets" xmlns:p="http://primefaces.org/ui"
+                xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html">
+
+    <h:form id="form-ajax" styleClass="p-grid">
+        <p:growl id="growl" showDetail="true" severity="info"/>
+
+        <p:card id="markerDrag" styleClass="p-col-6">
+            <f:facet name="title">Marker Drag</f:facet>
+            <p:gmap model="#{ajaxC.defaultModel}" zoom="4" type="hybrid" center="-9.189967,-75.015152"
+                    styleClass="map-basic">
+                <p:ajax event="markerDrag" update="growl" listener="#{ajaxC.onMarkerDrag}"/>
+            </p:gmap>
+        </p:card>
+
+        <p:card id="pointSelect" styleClass="p-col-6">
+            <f:facet name="title">Point Select</f:facet>
+            <p:gmap model="#{ajaxC.defaultModel}" zoom="4" type="hybrid" center="-9.189967,-75.015152"
+                    styleClass="map-basic">
+                <p:ajax event="pointSelect" update="growl" listener="#{ajaxC.onPointSelect}"/>
+            </p:gmap>
+        </p:card>
+
+        <p:card id="overlaySelect" styleClass="p-col-6">
+            <f:facet name="title">Overlay Select</f:facet>
+            <p:gmap model="#{ajaxC.defaultModel}" zoom="4" type="hybrid" center="-9.189967,-75.015152"
+                    styleClass="map-basic">
+                <p:ajax event="overlaySelect" update="growl" listener="#{ajaxC.onOverlaySelect}"/>
+            </p:gmap>
+        </p:card>
+
+        <p:card id="gmapInfoWindow" styleClass="p-col-6">
+            <f:facet name="title">GMap Info Window</f:facet>
+            <p:gmap model="#{ajaxC.defaultModel}" zoom="4" type="hybrid" center="-9.189967,-75.015152"
+                    styleClass="map-basic">
+                <p:ajax event="overlaySelect" update="growl" listener="#{ajaxC.onOverlaySelect}"/>
+                <p:gmapInfoWindow>
+                    <h:outputText value="#{ajaxC.marker.title}"/>
+                </p:gmapInfoWindow>
+            </p:gmap>
+        </p:card>
+    </h:form>
+</ui:composition>

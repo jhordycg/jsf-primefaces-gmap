@@ -1,0 +1,152 @@
+<ui:composition xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui">
+
+    <p:dialog widgetVar="dlg-default" header="Descripción" height="350" width="1100" modal="true"
+              showEffect="fade">
+        <p>El componente GMap de Primefaces requiere de cuatro atributos principales para ser insertado en una página (JSF).</p>
+        <table>
+            <thead>
+            <tr class="header">
+                <th>Atributos</th>
+                <th>Tipo</th>
+                <th>Descripción</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr class="odd">
+                <td>center</td>
+                <td>String</td>
+                <td>Define la coordenada central del Mapa.</td>
+            </tr>
+            <tr class="even">
+                <td>zoom</td>
+                <td>Integer</td>
+                <td>Define el nivel inicial del zoom del Mapa.</td>
+            </tr>
+            <tr class="odd">
+                <td>type</td>
+                <td>String</td>
+                <td>Define el <a
+                        href="https://developers.google.com/maps/documentation/javascript/maptypes#BasicMapTypes">tipo de Mapa</a> que se mostrará.
+                </td>
+            </tr>
+            <tr class="even">
+                <td>style</td>
+                <td>css style</td>
+                <td>Es necesario definir el high y width del Mapa.</td>
+            </tr>
+            </tbody>
+        </table>
+        <h4 id="ejemplo">Ejemplo</h4>
+        <p>Código XHTML:</p>
+        <pre class="xhtml"><code>&lt;p:gmap styleClass=&quot;map-basic&quot; type=&quot;hybrid&quot; center=&quot;-9.189967,-75.015152&quot; zoom=&quot;4&quot;/&gt;</code></pre>
+    </p:dialog>
+    <p:dialog widgetVar="dlg-scrollWheel" header="Descripción" height="350" width="1100" modal="true"
+              showEffect="fade">
+        <p>Este atributo nos permite habilitar / deshabilitar el <em>scroll</em> para hacer zoom en el Mapa.</p>
+        <h4 id="ejemplo-1">Ejemplo</h4>
+        <p>Código XHTML:</p>
+        <pre class="xhtml"><code>&lt;p:gmap styleClass=&quot;map-basic&quot; type=&quot;hybrid&quot; center=&quot;-9.189967,-75.015152&quot; zoom=&quot;4&quot; scrollWheel=&quot;false&quot;/&gt;</code></pre>
+    </p:dialog>
+    <p:dialog widgetVar="dlg-dragable" header="Descripción" height="350" width="1100" modal="true"
+              showEffect="fade">
+        <p>Este atributo nos permite habilitar / deshabilitar la posibilidad de arrastrar el Mapa con el mouse.</p>
+        <p>Code XHTML</p>
+        <pre class="xhtml"><code>&lt;p:gmap styleClass=&quot;map-basic&quot; type=&quot;hybrid&quot; center=&quot;-9.189967,-75.015152&quot; zoom=&quot;4&quot; draggable=&quot;false&quot;/&gt;</code></pre>
+    </p:dialog>
+    <p:dialog widgetVar="dlg-disableDoubleClickZoom" header="Descripción" height="350" width="1100" modal="true"
+              showEffect="fade">
+        <p>Este atributo nos permite habilitar / deshabilitar la posibilidad de hacer
+            <strong>zoom</strong> realizando dos clicks seguidos con el mouse en el Mapa.</p>
+        <p>Code XHTML</p>
+        <pre class="xhtml"><code>&lt;p:gmap styleClass=&quot;map-basic&quot; type=&quot;hybrid&quot; center=&quot;-9.189967,-75.015152&quot; zoom=&quot;4&quot; disableDoubleClickZoom=&quot;true&quot;/&gt;</code></pre>
+    </p:dialog>
+    <p:dialog widgetVar="dlg-mapTypeControl" header="Descripción" height="350" width="1100" modal="true"
+              showEffect="fade">
+        <p>Este atributo nos permite habilitar / deshabilitar el control para cambiar el tipo de Mapa.</p>
+        <p>Code XHTML</p>
+        <pre class="xhtml"><code>&lt;p:gmap styleClass=&quot;map-basic&quot; type=&quot;hybrid&quot; center=&quot;-9.189967,-75.015152&quot; zoom=&quot;4&quot; mapTypeControl=&quot;false&quot;/&gt;</code></pre>
+    </p:dialog>
+    <p:dialog widgetVar="dlg-disableDefaultUI" header="Descripción" height="350" width="1100" modal="true"
+              showEffect="fade">
+        <p>Este atributo nos permite habilitar / deshabilitar los controles que vienen por defecto en el Mapa.</p>
+        <p>Code XHTML</p>
+        <pre class="xhtml"><code>&lt;p:gmap styleClass=&quot;map-basic&quot; type=&quot;hybrid&quot; center=&quot;-9.189967,-75.015152&quot; zoom=&quot;4&quot; disableDefaultUI=&quot;true&quot;/&gt;</code></pre>
+    </p:dialog>
+    <p:dialog widgetVar="dlg-streetView" header="Descripción" height="350" width="1000" modal="true"
+              showEffect="fade">
+        <p>Este atributo nos permite habilitar / deshabilitar el control para poder navegar por medio de las calles en el Mapa.</p>
+        <p>Code XHTML</p>
+        <pre class="xhtml"><code>&lt;p:gmap styleClass=&quot;map-basic&quot; type=&quot;hybrid&quot; center=&quot;-9.189967,-75.015152&quot; zoom=&quot;4&quot; disableDefaultUI=&quot;true&quot;
+        streetView=&quot;true&quot;/&gt;</code></pre>
+    </p:dialog>
+    <p:dialog widgetVar="dlg-navigationControl" header="Descripción" height="350" width="1100" modal="true"
+              showEffect="fade">
+        <p>Este atributo nos permite habilitar / deshabilitar el control de navegación en el Mapa.</p>
+        <p>Code XHTML</p>
+        <pre class="xhtml"><code>&lt;p:gmap styleClass=&quot;map-basic&quot; type=&quot;hybrid&quot; center=&quot;-9.189967,-75.015152&quot; zoom=&quot;4&quot; navigationControl=&quot;false&quot;/&gt;
+</code></pre>
+    </p:dialog>
+    <p:dialog widgetVar="dlg-fitBounds" header="Descripción" height="350" width="1100" modal="true"
+              showEffect="fade">
+        <p>Este atributo si está habilitado automáticamente se encargara de calcular el atributo <em>zoom</em> y
+            <em>mapCenter</em> del Mapa para que pueda mostrarse todos los <em>Markers</em> agregados.</p>
+        <p>Code XHTML</p>
+        <pre class="xhtml"><code>&lt;p:gmap styleClass=&quot;map-basic&quot; type=&quot;hybrid&quot; center=&quot;-9.189967,-75.015152&quot; zoom=&quot;4&quot; model=&quot;&#035;&#123;basicC.defaultModel&#125;&quot;
+        fitBounds=&quot;true&quot;/&gt;</code></pre>
+        <p>Code Java</p>
+        <div class="sourceCode" id="cb10"><pre class="sourceCode java"><code class="sourceCode java"><span
+                id="cb10-1"><a href="#cb10-1" aria-hidden="true"></a><span class="at">@Named</span>(<span
+                class="st">&quot;basicC&quot;</span>)</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true"></a><span class="at">@SessionScoped</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true"></a><span class="kw">public</span> <span class="kw">class</span> BasicController <span
+        class="kw">implements</span> <span class="bu">Serializable</span> {</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true"></a>    <span class="kw">private</span> <span
+        class="dt">final</span> DefaultMapModel defaultModel = <span class="kw">new</span> <span
+        class="fu">DefaultMapModel</span>();</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true"></a></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true"></a>    <span class="kw">private</span> <span
+        class="fu">BasicController</span>() {</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true"></a>    }</span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true"></a></span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true"></a>    <span class="at">@PostConstruct</span></span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true"></a>    <span class="dt">void</span> <span
+        class="fu">init</span>() {</span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true"></a>        LatLng peruLatLng = <span
+        class="kw">new</span> <span class="fu">LatLng</span>(-<span class="fl">9.</span><span class="dv">189967</span>, -<span
+        class="fl">75.</span><span class="bn">015152</span>);</span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true"></a>        LatLng boliviaLatLng = <span class="kw">new</span> <span
+        class="fu">LatLng</span>(-<span class="fl">16.</span><span class="dv">290154</span>, -<span
+        class="fl">63.</span><span class="dv">588653</span>);</span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true"></a>        LatLng ecuadorLatLng = <span class="kw">new</span> <span
+        class="fu">LatLng</span>(-<span class="fl">1.</span><span class="dv">831239</span>, -<span class="fl">78.</span><span
+        class="dv">183406</span>);</span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true"></a>        LatLng venezuelaLatLng = <span
+        class="kw">new</span> <span class="fu">LatLng</span>(<span class="fl">6.</span><span
+        class="dv">42375</span>, -<span class="fl">66.</span><span class="dv">58973</span>);</span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true"></a></span>
+<span id="cb10-16"><a href="#cb10-16" aria-hidden="true"></a>        Marker peruMarker = <span
+        class="kw">new</span> <span class="fu">Marker</span>(peruLatLng, <span
+        class="st">&quot;Perú&quot;</span>);</span>
+<span id="cb10-17"><a href="#cb10-17" aria-hidden="true"></a>        Marker boliviaMarker = <span class="kw">new</span> <span
+        class="fu">Marker</span>(boliviaLatLng, <span class="st">&quot;Bolivia&quot;</span>);</span>
+<span id="cb10-18"><a href="#cb10-18" aria-hidden="true"></a>        Marker ecuadorMarker = <span class="kw">new</span> <span
+        class="fu">Marker</span>(ecuadorLatLng, <span class="st">&quot;Ecuador&quot;</span>);</span>
+<span id="cb10-19"><a href="#cb10-19" aria-hidden="true"></a>        Marker venezuelaMarker = <span
+        class="kw">new</span> <span class="fu">Marker</span>(venezuelaLatLng, <span
+        class="st">&quot;venezuela&quot;</span>);</span>
+<span id="cb10-20"><a href="#cb10-20" aria-hidden="true"></a></span>
+<span id="cb10-21"><a href="#cb10-21" aria-hidden="true"></a>        defaultModel.<span class="fu">addOverlay</span>(peruMarker);</span>
+<span id="cb10-22"><a href="#cb10-22" aria-hidden="true"></a>        defaultModel.<span class="fu">addOverlay</span>(boliviaMarker);</span>
+<span id="cb10-23"><a href="#cb10-23" aria-hidden="true"></a>        defaultModel.<span class="fu">addOverlay</span>(ecuadorMarker);</span>
+<span id="cb10-24"><a href="#cb10-24" aria-hidden="true"></a>        defaultModel.<span class="fu">addOverlay</span>(venezuelaMarker);</span>
+<span id="cb10-25"><a href="#cb10-25" aria-hidden="true"></a>    }</span>
+<span id="cb10-26"><a href="#cb10-26" aria-hidden="true"></a></span>
+<span id="cb10-27"><a href="#cb10-27" aria-hidden="true"></a>    <span class="kw">public</span> DefaultMapModel <span
+        class="fu">getDefaultModel</span>() {</span>
+<span id="cb10-28"><a href="#cb10-28" aria-hidden="true"></a>        <span class="kw">return</span> defaultModel;</span>
+<span id="cb10-29"><a href="#cb10-29" aria-hidden="true"></a>    }</span>
+<span id="cb10-30"><a href="#cb10-30" aria-hidden="true"></a>}</span></code></pre>
+        </div>
+    </p:dialog>
+</ui:composition>
